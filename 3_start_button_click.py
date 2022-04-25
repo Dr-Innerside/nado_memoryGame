@@ -9,6 +9,11 @@ def display_start_screen():
     pygame.draw.circle(screen, WHITE, start_button.center, 60, 5)
 
 
+### 게임 화면 보여주기
+def display_game_screen():
+    print("Game Start")
+
+
 ### pos에 해당하는 버튼 확인
 def check_buttons(pos):
     # 함수 밖에 위치한 변수를 쓰는 것은 상관 없지만
