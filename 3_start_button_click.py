@@ -1,12 +1,15 @@
 import pygame
 
+### 게임 시작 버튼 화면
+# 함수 선언을 위해 상단 배치
 def display_start_screen():
     # 시작 버튼을 원으로 그림
     # 흰색으로 원을 그리는데 중심좌표는 start_button의 중심좌표를 따라감
     # 반지름은 60, 선 두께는 5
     pygame.draw.circle(screen, WHITE, start_button.center, 60, 5)
 
-# 초기화
+
+### 초기화
 pygame.init()
 #   게임 화면 크기
 screen_width = 1280 # 가로 크기
@@ -17,7 +20,7 @@ screen = pygame.display.set_mode((screen_width,screen_height))
 pygame.display.set_caption("Memory Game")
 
 
-# 시작 버튼
+### 시작 버튼
 # 가로세로 사각형 120, 화면에서 왼쪽으로 120, 아래에서 120 여백
 # 화면 좌하단의 시작버튼 크기(위치좌표이동 0, 가로세로 120)
 start_button = pygame.Rect(0, 0, 120, 120) # (0.0) 이 좌하단
@@ -25,13 +28,13 @@ start_button = pygame.Rect(0, 0, 120, 120) # (0.0) 이 좌하단
 start_button.center = (120, screen_height-120)
 
 
-# 색깔
+### 색깔
 # RGB 값. w3school RGB document 참조
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 
-# 게임 루프
+### 게임 루프
 #   while문을 돌면서 키보드, 마우스 입력 체크하다가 게임을 종료하면 루프 탈출
 running = True  # 게임이 실행중인가?
 while running:
@@ -49,5 +52,6 @@ while running:
     # 화면 업데이트
     pygame.display.update()
 
-# 게임 종료
+
+### 게임 종료
 pygame.quit()
