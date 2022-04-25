@@ -1,4 +1,5 @@
 import pygame
+from random import *
 
 ### 레벨에 맞게 설정
 def setup(level):
@@ -25,6 +26,22 @@ def shuffle_grid(number_count):
 
     # 시작 숫자 1부터 number_count, 만약 5라면 5까지 숫자를 랜덤으로 배치
     number = 1
+
+    # 레벨에서 주어지는 넘버 카운트 만큼 리스트 안에 숫자를 넣고 초과하면 루프 탈출
+    while number <= number_count:
+        # y좌표: 0, 1, 2, 3, 4 중에서 랜덤으로 뽑기
+        row_index = randrange(0,rows)
+        # x좌표: 0, 1, 2, 3, 4, 5, 6, 7, 8 중에서 랜덤으로 뽑기
+        col_index = randrange(0,columns)
+
+        # 리스트에 접근했는데 비어있는 값이라면
+        if grid[row_index][col_index] == 0:
+            grid[row_index][col_index] = number # 숫자 지정
+            number += 1
+
+    # 배치된 랜덤함수 확인
+    # for grid_pix in grid:
+    #     print(grid_pix)
 
 ### 게임 시작 버튼 보여주기
 # 함수 선언을 위해 상단 배치
@@ -79,6 +96,8 @@ WHITE = (255,255,255)
 ### 게임 시작 여부
 start = False
 
+### 게임 시작 전에 게임 설정 함수 수행
+setup(1)
 
 ### 게임 루프
 #   while문을 돌면서 키보드, 마우스 입력 체크하다가 게임을 종료하면 루프 탈출
