@@ -71,7 +71,10 @@ def display_start_screen():
 
 ### 게임 화면 보여주기
 def display_game_screen():
-    print("Game Start")
+    # 버튼 값을 반복을 돌면서 보여줘야 함
+    for idx, rect in enumerate(number_buttons, start=1):
+        # 화면에, 회색에 해당하는, rect형 이미지를 그려줌
+        pygame.draw.rect(screen, GRAY, rect)
 
 
 ### pos에 해당하는 버튼 확인
@@ -108,6 +111,7 @@ start_button.center = (120, screen_height-120)
 # RGB 값. w3school RGB document 참조
 BLACK = (0,0,0)
 WHITE = (255,255,255)
+GRAY = (50,50,50)
 
 ### 플레이어가 눌러야 하는 버튼들
 number_buttons = []
