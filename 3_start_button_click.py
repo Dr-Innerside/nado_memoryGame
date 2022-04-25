@@ -42,10 +42,16 @@ start = False
 #   while문을 돌면서 키보드, 마우스 입력 체크하다가 게임을 종료하면 루프 탈출
 running = True  # 게임이 실행중인가?
 while running:
+    # 마우스 클릭 포지션 값을 받기 위한 변수 선언
+    click_pos = None
+
     # 이벤트 루프
     for event in pygame.event.get(): # 어떤 이벤트가 발생하였는가?
         if event.type == pygame.QUIT: # 게임 화면을 닫는 이벤트인가?
             running = False # 게임이 더 이상 실행 중이 아님
+        elif event.type == pygame.MOUSEBUTTONUP: # 사용자가 마우스를 클릭했을 때
+            click_pos = pygame.mouse.get_pos()  # get_pos()으로 클릭한 위치 값 받아오기
+            print(click_pos)
 
     # 화면 전체를 까맣게 칠함
     screen.fill(BLACK)
@@ -56,6 +62,10 @@ while running:
     # 분기설정 : 게임이 시작되지 않았다면,
     else:
         display_start_screen() # 시작 화면 표시
+
+    # 사용자가 클릭한 좌표 값이 있다면 (어딘가 클릭했다면)
+    if click_pos:
+        check_buttons(click_pos)
 
     # 화면 업데이트
     pygame.display.update()
