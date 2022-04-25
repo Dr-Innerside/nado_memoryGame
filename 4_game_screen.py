@@ -76,6 +76,11 @@ def display_game_screen():
         # 화면에, 회색에 해당하는, rect형 이미지를 그려줌
         pygame.draw.rect(screen, GRAY, rect)
 
+        # 실제 숫자 텍스트
+        cell_text = game_font.render(str(idx), True, WHITE)
+        text_rect = cell_text.get_rect(center=rect.center)
+        screen.blit(cell_text, text_rect)
+
 
 ### pos에 해당하는 버튼 확인
 def check_buttons(pos):
@@ -97,6 +102,8 @@ screen_height = 720 # 세로 크기
 screen = pygame.display.set_mode((screen_width,screen_height))
 #   게임 제목
 pygame.display.set_caption("Memory Game")
+#   폰트 정의
+game_font = pygame.font.Font(None, 120) # 폰트 정의
 
 
 ### 시작 버튼
