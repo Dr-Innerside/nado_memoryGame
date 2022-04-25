@@ -73,13 +73,14 @@ def display_start_screen():
 def display_game_screen():
     # 버튼 값을 반복을 돌면서 보여줘야 함
     for idx, rect in enumerate(number_buttons, start=1):
-        # 화면에, 회색에 해당하는, rect형 이미지를 그려줌
-        pygame.draw.rect(screen, GRAY, rect)
-
-        # 실제 숫자 텍스트
-        cell_text = game_font.render(str(idx), True, WHITE)
-        text_rect = cell_text.get_rect(center=rect.center)
-        screen.blit(cell_text, text_rect)
+        if hidden:  # 숨김 처리 분기
+            # 화면에, 회색에 해당하는, rect형 이미지를 그려줌
+            pygame.draw.rect(screen, WHITE, rect)
+        else:
+            # 실제 숫자 텍스트
+            cell_text = game_font.render(str(idx), True, WHITE)
+            text_rect = cell_text.get_rect(center=rect.center)
+            screen.blit(cell_text, text_rect)
 
 
 ### pos에 해당하는 버튼 확인
@@ -98,12 +99,17 @@ def check_buttons(pos):
 
 ### 순서대로 버튼을 눌렀는지 체크하는 함수
 def check_number_buttons(pos):
+    global hidden
+
     # 반복문으로 잘라내기
     for button in number_buttons:
         # 버튼 값의 클릭 위치 안에 내가 클릭한 좌표가 포함되어 있다면
         if button.collidepoint(pos):
             if button == number_buttons[0]: # 올바른 숫자 클릭
                 print("Correct")
+                del number_buttons[0]
+                if not hidden:
+                    hidden = True # 숫자 숨김 처리
             else:   # 잘못된 숫자 클릭
                 print("Wrong")
             break
@@ -141,6 +147,9 @@ number_buttons = []
 
 ### 게임 시작 여부
 start = False
+
+### 숫자 숨김 여부 (사용자가 1을 클릭했거나, 보여주는 시간을 초과했을 때)
+hidden = False
 
 ### 게임 시작 전에 게임 설정 함수 수행
 setup(1)
