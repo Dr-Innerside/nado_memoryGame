@@ -1,6 +1,6 @@
 import pygame
 
-### 게임 시작 버튼 화면
+### 게임 시작 버튼 보여주기
 # 함수 선언을 위해 상단 배치
 def display_start_screen():
     # 시작 버튼을 원으로 그림
@@ -8,6 +8,17 @@ def display_start_screen():
     # 반지름은 60, 선 두께는 5
     pygame.draw.circle(screen, WHITE, start_button.center, 60, 5)
 
+
+### pos에 해당하는 버튼 확인
+def check_buttons(pos):
+    # 함수 밖에 위치한 변수를 쓰는 것은 상관 없지만
+    # 변수 값을 바꿔주기 위해서는 전역변수 설정을 해줘야함
+    global start
+
+    # 사용자가 클릭한 위치가 스타트 버튼 내부에 포함된다면
+    if start_button.collidepoint(pos):
+        # 게임 스타트 분기 변경
+        start = True
 
 ### 초기화
 pygame.init()
