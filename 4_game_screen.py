@@ -16,6 +16,11 @@ def shuffle_grid(number_count):
     rows = 5
     columns = 9
 
+    cell_size = 130 # 각 Grid cell 별 가로, 세로 크기
+    button_size = 110 # Grid cell 내에 실제로 그려질 버튼 크기
+    screen_left_margin = 55 # 전체 스크린 왼쪽 여백
+    screen_top_margin = 20 # 전체 스크린 위쪽 여백
+
     # [0,0,0,0,0,0,0,0,0] 앞 부분 for
     # [[0,0,0,0,0,0,0,0,0],
     # [0,0,0,0,0,0,0,0,0],
