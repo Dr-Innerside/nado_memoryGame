@@ -34,6 +34,10 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 
+### 게임 시작 여부
+start = False
+
+
 ### 게임 루프
 #   while문을 돌면서 키보드, 마우스 입력 체크하다가 게임을 종료하면 루프 탈출
 running = True  # 게임이 실행중인가?
@@ -46,8 +50,12 @@ while running:
     # 화면 전체를 까맣게 칠함
     screen.fill(BLACK)
 
-    # 시작 화면 표시
-    display_start_screen()
+    # 분기설정 : 게임이 시작됐다면,
+    if start:
+        display_game_screen() # 게임 화면 표시
+    # 분기설정 : 게임이 시작되지 않았다면,
+    else:
+        display_start_screen() # 시작 화면 표시
 
     # 화면 업데이트
     pygame.display.update()
