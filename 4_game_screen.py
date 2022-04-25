@@ -1,5 +1,20 @@
 import pygame
 
+### 레벨에 맞게 설정
+def setup(level):
+    # 얼마나 많은 숫자를 보여줄 것인가?
+    number_count = (level // 3) + 5         # 레벨로 3으로 나눈 몫에 5 더하기
+    number_count = min(number_count, 20)    # 레벨이 높아도 최대 수를 20으로 제한
+
+    # 실제 화면에 grid 형태로 숫자를 랜덤으로 배치
+    shuffle_grid(number_count)
+
+
+### 숫자 섞기 (이 프로젝트에서 가장 중요!!!)
+def shuffle_grid(number_count):
+    rows = 5
+    columns = 9
+
 ### 게임 시작 버튼 보여주기
 # 함수 선언을 위해 상단 배치
 def display_start_screen():
