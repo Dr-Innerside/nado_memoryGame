@@ -19,6 +19,12 @@ start_button = pygame.Rect(0, 0, 120, 120) # (0.0) 이 좌하단
 start_button.center = (120, screen_height-120)
 
 
+# 색깔
+# RGB 값. w3school RGB document 참조
+BLACK = (0,0,0)
+WHITE = (255,255,255)
+
+
 # 게임 루프
 #   while문을 돌면서 키보드, 마우스 입력 체크하다가 게임을 종료하면 루프 탈출
 running = True  # 게임이 실행중인가?
@@ -27,5 +33,9 @@ while running:
     for event in pygame.event.get(): # 어떤 이벤트가 발생하였는가?
         if event.type == pygame.QUIT: # 게임 화면을 닫는 이벤트인가?
             running = False # 게임이 더 이상 실행 중이 아님
+
+    # 화면 전체를 까맣게 칠함
+    screen.fill(BLACK)
+
 # 게임 종료
 pygame.quit()
