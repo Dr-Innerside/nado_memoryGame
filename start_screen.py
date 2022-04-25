@@ -1,5 +1,11 @@
 import pygame
 
+def display_start_screen():
+    # 시작 버튼을 원으로 그림
+    # 흰색으로 원을 그리는데 중심좌표는 start_button의 중심좌표를 따라감
+    # 반지름은 60, 선 두께는 5
+    pygame.draw.circle(screen, WHITE, start_button.center, 60, 5)
+
 # 초기화
 pygame.init()
 #   게임 화면 크기
@@ -36,6 +42,12 @@ while running:
 
     # 화면 전체를 까맣게 칠함
     screen.fill(BLACK)
+
+    # 시작 화면 표시
+    display_start_screen()
+
+    # 화면 업데이트
+    pygame.display.update()
 
 # 게임 종료
 pygame.quit()
