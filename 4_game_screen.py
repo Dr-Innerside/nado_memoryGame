@@ -88,10 +88,26 @@ def check_buttons(pos):
     # 변수 값을 바꿔주기 위해서는 전역변수 설정을 해줘야함
     global start
 
+    if start: # 게임이 시작했다면?
+        check_number_buttons(pos)
     # 사용자가 클릭한 위치가 스타트 버튼 내부에 포함된다면
-    if start_button.collidepoint(pos):
+    elif start_button.collidepoint(pos):
         # 게임 스타트 분기 변경
         start = True
+
+
+### 순서대로 버튼을 눌렀는지 체크하는 함수
+def check_number_buttons(pos):
+    # 반복문으로 잘라내기
+    for button in number_buttons:
+        # 버튼 값의 클릭 위치 안에 내가 클릭한 좌표가 포함되어 있다면
+        if button.collidepoint(pos):
+            if button == number_buttons[0]: # 올바른 숫자 클릭
+                print("Correct")
+            else:   # 잘못된 숫자 클릭
+                print("Wrong")
+            break
+
 
 ### 초기화
 pygame.init()
