@@ -73,6 +73,10 @@ def display_start_screen():
     # 반지름은 60, 선 두께는 5
     pygame.draw.circle(screen, WHITE, start_button.center, 60, 5)
 
+    msg = game_font.render(f'{curr_level}', True, WHITE)
+    msg_rect = msg.get_rect(center=start_button.center)
+    screen.blit(msg, msg_rect)
+
 
 ### 게임 화면 보여주기
 def display_game_screen():
