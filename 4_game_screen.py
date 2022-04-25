@@ -44,6 +44,12 @@ def shuffle_grid(number_count):
             grid[row_index][col_index] = number # 숫자 지정
             number += 1
 
+            # 현재 grid cell 위치 기준으로 x, y 위치를 구함
+            center_x = screen_left_margin + (col_index * cell_size) + (cell_size / 2)
+            center_y = screen_top_margin + (row_index * cell_size) + (cell_size / 2)
+
+            
+
     # 배치된 랜덤함수 확인
     # for grid_pix in grid:
     #     print(grid_pix)
