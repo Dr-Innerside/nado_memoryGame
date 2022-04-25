@@ -126,6 +126,7 @@ def check_number_buttons(pos):
                     hidden = True # 숫자 숨김 처리
             else:   # 잘못된 숫자 클릭
                 print("Wrong")
+                game_over()
             break
 
     # 리스트 체크 : 모든 숫자를 다 맞혔다면? 레벨을 높혀서 다시 시작화면
@@ -134,6 +135,19 @@ def check_number_buttons(pos):
         hidden = False
         curr_level += 1
         setup(curr_level)
+
+### 게임 종료 처리. 메시지도 보여줌
+def game_over():
+    msg = game_font.render(f'Your level is {curr_level}', True, WHITE)
+    msg_rect = msg.get_rect(center=(screen_width/2, screen_height/2))
+
+    # 스크린 위에 검은 화면을 채우고 글씨를 넣어서 게임 오버 알림 그리기
+    screen.fill(BLACK)
+    screen.blit(msg, msg_rect)
+
+    global running
+    # 게임 동작 루프 탈출
+    running=False
 
 ### 초기화
 pygame.init()
@@ -216,6 +230,8 @@ while running:
     # 화면 업데이트
     pygame.display.update()
 
+# 바로 게임이 종료되지 않게 하기
+pygame.time.delay(5000)
 
 ### 게임 종료
 pygame.quit()
