@@ -48,7 +48,13 @@ def shuffle_grid(number_count):
             center_x = screen_left_margin + (col_index * cell_size) + (cell_size / 2)
             center_y = screen_top_margin + (row_index * cell_size) + (cell_size / 2)
 
-            
+            # 숫자 버튼 만들기
+            # 실제 여백이 들어간 버튼 크기로 설정
+            button = pygame.Rect(0,0,button_size,button_size)
+            # 버튼 위치 잡아주기
+            button.center = (center_x,center_y)
+            # 버튼 넣어주기
+            number_buttons.append(button)
 
     # 배치된 랜덤함수 확인
     # for grid_pix in grid:
@@ -93,7 +99,7 @@ pygame.display.set_caption("Memory Game")
 ### 시작 버튼
 # 가로세로 사각형 120, 화면에서 왼쪽으로 120, 아래에서 120 여백
 # 화면 좌하단의 시작버튼 크기(위치좌표이동 0, 가로세로 120)
-start_button = pygame.Rect(0, 0, 120, 120) # (0.0) 이 좌하단
+start_button = pygame.Rect(0, 0, 120, 120) # (0.0) 이 좌상단
 # x값: 좌하단에서 왼쪽으로 120, y값: 화면 높이에서 120을 뺀 값 720-120 = 위에서 600만큼 내려와라는 뜻
 start_button.center = (120, screen_height-120)
 
@@ -103,6 +109,8 @@ start_button.center = (120, screen_height-120)
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
+### 플레이어가 눌러야 하는 버튼들
+number_buttons = []
 
 ### 게임 시작 여부
 start = False
