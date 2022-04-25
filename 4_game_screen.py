@@ -3,6 +3,11 @@ from random import *
 
 ### 레벨에 맞게 설정
 def setup(level):
+    # 얼마동안 시간을 보여줄 것인가?만
+    global display_time
+    display_time = 5 - (level//3)
+    display_time = max(display_time, 1)
+
     # 얼마나 많은 숫자를 보여줄 것인가?
     number_count = (level // 3) + 5         # 레벨로 3으로 나눈 몫에 5 더하기
     number_count = min(number_count, 20)    # 레벨이 높아도 최대 수를 20으로 제한
@@ -71,6 +76,14 @@ def display_start_screen():
 
 ### 게임 화면 보여주기
 def display_game_screen():
+    global hidden
+
+    if not hidden:
+        # 클릭한 순간에서 지난 시간을 빼준 값
+        elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # ms -> sec
+        if elapsed_time > display_time:
+            hidden = True
+
     # 버튼 값을 반복을 돌면서 보여줘야 함
     for idx, rect in enumerate(number_buttons, start=1):
         if hidden:  # 숨김 처리 분기
@@ -87,7 +100,7 @@ def display_game_screen():
 def check_buttons(pos):
     # 함수 밖에 위치한 변수를 쓰는 것은 상관 없지만
     # 변수 값을 바꿔주기 위해서는 전역변수 설정을 해줘야함
-    global start
+    global start, start_ticks
 
     if start: # 게임이 시작했다면?
         check_number_buttons(pos)
@@ -95,6 +108,7 @@ def check_buttons(pos):
     elif start_button.collidepoint(pos):
         # 게임 스타트 분기 변경
         start = True
+        start_ticks = pygame.time.get_ticks() # 타이머 시작 (현재 시간을 저장)
 
 
 ### 순서대로 버튼을 눌렀는지 체크하는 함수
@@ -144,6 +158,13 @@ GRAY = (50,50,50)
 
 ### 플레이어가 눌러야 하는 버튼들
 number_buttons = []
+
+### 숫자를 보여주는 시간
+display_time = None
+
+
+### 현재 시간 정보를 저장
+start_ticks = None
 
 ### 게임 시작 여부
 start = False
