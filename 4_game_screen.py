@@ -15,6 +15,17 @@ def shuffle_grid(number_count):
     rows = 5
     columns = 9
 
+    # [0,0,0,0,0,0,0,0,0] 앞 부분 for
+    # [[0,0,0,0,0,0,0,0,0],
+    # [0,0,0,0,0,0,0,0,0],
+    # [0,0,0,0,0,0,0,0,0],
+    # [0,0,0,0,0,0,0,0,0],
+    # [0,0,0,0,0,0,0,0,0]] 뒷 부분 for
+    grid = [[0 for col in range(columns)] for row in range(rows)]
+
+    # 시작 숫자 1부터 number_count, 만약 5라면 5까지 숫자를 랜덤으로 배치
+    number = 1
+
 ### 게임 시작 버튼 보여주기
 # 함수 선언을 위해 상단 배치
 def display_start_screen():
